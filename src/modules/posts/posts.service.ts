@@ -4,6 +4,7 @@ import { Post, PostDocument } from './schemas/post.schema'
 import { Model, Types } from 'mongoose'
 import { PostData } from './dto/create-post.dto'
 import { UpdatePostData } from './dto/update-post.dto'
+import { QueryPost } from './dto/query-post'
 
 @Injectable()
 export class PostsService {
@@ -18,9 +19,14 @@ export class PostsService {
     }
   }
 
-  async findAll() {
+  async findAll(query: QueryPost) {
     try {
-      return await this.postModel.find()
+      const { page, category } = query
+      const filter: Record<string, any> = {}
+      if (category) filter.category = category
+
+      let posts = await this.postModel.find(filter)
+      return posts
     } catch (error) {
       throw new BadRequestException(error)
     }

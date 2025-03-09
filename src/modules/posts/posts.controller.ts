@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { ResponseMessage } from 'src/public.decorator';
 import { PostData } from './dto/create-post.dto';
 import { UpdatePostData } from './dto/update-post.dto';
+import { QueryPost } from './dto/query-post';
 
 @Controller('posts')
 export class PostsController {
@@ -16,8 +17,8 @@ export class PostsController {
 
   @ResponseMessage('Lấy danh sách bài đăng thành công')
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  findAll(@Query() query: QueryPost) {
+    return this.postsService.findAll(query);
   }
 
   @ResponseMessage('Lấy bài đăng thành công')

@@ -12,7 +12,7 @@ import { AllExceptionsFilter } from './exception.filter';
 import { PostsModule } from './modules/posts/posts.module';
 import { BannersModule } from './modules/banners/banners.module';
 import { FileModule } from './modules/file/file.module';
-import { InformationModule } from './modules/information/configs.module';
+import { InformationModule } from './modules/information/information.module';
 
 @Module({
   imports: [

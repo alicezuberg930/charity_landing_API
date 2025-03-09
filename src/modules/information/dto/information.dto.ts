@@ -1,61 +1,48 @@
 import { IsEmail, IsNotEmpty, IsOptional, Length, Matches } from "class-validator"
 
 export class InformationData {
-    @IsNotEmpty({ message: "Tên người dùng không được để trống" })
-    company: string
+    @IsNotEmpty({ message: "Địa chỉ nấu cháo không được để trống" })
+    activityAddress: string
 
-    @IsNotEmpty({ message: "Số điện thoại không được để trống" })
-    @Length(10, 10, { message: "Số điện thoại phải chứa đúng 10 ký tự" })
-    @Matches(/^[0-9]*$/, { message: "Số điện thoại chỉ được chứa số" })
-    phone: string
-
-    @IsOptional()
-    telephone: string
-
-    @IsNotEmpty({ message: "Số điện thoại không được để trống" })
-    @Length(10, 10, { message: "Số điện thoại phải chứa đúng 10 ký tự" })
-    @Matches(/^[0-9]*$/, { message: "Số điện thoại chỉ được chứa số" })
-    hotline: string
-
-    @IsNotEmpty({ message: "Địa chỉ không được để trống" })
-    address: string
-
-    @IsNotEmpty({ message: "Giờ hoạt động không được để trống" })
-    openHour: string
-
-    @IsOptional()
-    slogan: string
-
-    @IsOptional()
-    googleMap: string
+    @IsNotEmpty({ message: "Địa chỉ kho không được để trống" })
+    storageAddress: string
 
     @IsEmail({}, { message: "Email sai định dạng" })
     email: string
 
-    @IsOptional()
-    zaloChatURL: string
+    @IsNotEmpty({ message: "Số điện thoại không được để trống" })
+    hotline: string
 
-    @IsOptional()
-    facebookChatURL: string
+    @IsNotEmpty({ message: "Link facebook không được để trống" })
+    facebookUrl: string
 
-    @IsOptional()
-    facebookPage: string
+    @IsNotEmpty({ message: "Link zalo không được để trống" })
+    zaloURL: string
 
-    @IsOptional()
-    googlePage: string
+    @IsNotEmpty({ message: "Link youtube không được để trống" })
+    youtubeURL: string
 
-    @IsOptional()
-    youtubePage: string
+    @IsNotEmpty({ message: "Link google map không được để trống" })
+    googleMapURL: string
 
-    @IsNotEmpty({ message: "Thông tin footer không được để trống" })
-    footerInfo: string
+    @IsNotEmpty({ message: "Link website không được để trống" })
+    websiteURL: string
 
-    @IsNotEmpty({ message: "Thông tin liên lạc không được trống" })
-    footerContact: JSON
+    @IsNotEmpty({ message: "Số điện thoại bàn không được để trống" })
+    telephone: string
 
-    @IsOptional()
-    fax: string
+    @IsNotEmpty({ message: "STK achaubank không được để trống" })
+    achaubankNumber: string
 
-    @IsOptional()
-    facebookID: string
+    @IsNotEmpty({ message: "STK viettinbank không được để trống" })
+    viettinbankNumber: string
+
+    @IsNotEmpty({ message: "STK sacombank không được để trống" })
+    sacombankNumber: string
+
+    @IsNotEmpty({ message: "STK vietcombank không được để trống" })
+    vietcombankNumber: string
+
+    @IsNotEmpty({ message: "STK agribank không được để trống" })
+    agribankNumber: string
 }

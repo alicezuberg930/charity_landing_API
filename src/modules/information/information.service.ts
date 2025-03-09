@@ -5,7 +5,7 @@ import { InformationData } from './dto/information.dto';
 import { Information, InformationDocument } from './schemas/information.schemas';
 
 @Injectable()
-export class ConfigsService {
+export class InformationService {
   constructor(@InjectModel(Information.name) private informationModel: Model<InformationDocument>) { }
 
   async update(informationData: InformationData) {

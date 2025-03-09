@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ConfigsService } from './configs.service';
-import { ConfigsController } from './configs.controller';
+
 import { MongooseModule } from '@nestjs/mongoose';
 import { Information, InformationSchema } from './schemas/information.schemas';
+import { InformationController } from './information.controller';
+import { InformationService } from './information.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Information.name, schema: InformationSchema }])],
-  controllers: [ConfigsController],
-  providers: [ConfigsService],
-  exports: [ConfigsService]
+  controllers: [InformationController],
+  providers: [InformationService],
+  exports: [InformationService]
 })
 export class InformationModule { }

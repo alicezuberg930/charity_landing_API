@@ -6,58 +6,49 @@ export type InformationDocument = HydratedDocument<Information>
 @Schema({ timestamps: true })
 export class Information {
     @Prop()
-    company: string
+    activityAddress: string
 
     @Prop()
-    slogan: string
-
-    @Prop()
-    phone: string
-
-    @Prop()
-    telephone: string
-
-    @Prop()
-    hotline: string
-
-    @Prop()
-    address: string
-
-    @Prop()
-    openHour: string
-
-    @Prop()
-    googleMap: string
+    storageAddress: string
 
     @Prop()
     email: string
 
     @Prop()
-    zaloChatURL: string
+    hotline: string
 
     @Prop()
-    facebookChatURL: string
+    facebookUrl: string
 
     @Prop()
-    facebookPage: string
+    zaloURL: string
 
     @Prop()
-    googlePage: string
+    youtubeURL: string
 
     @Prop()
-    youtubePage: string
+    googleMapURL: string
 
     @Prop()
-    footerInfo: string
-
-    @Prop({ type: JSON })
-    footerContact: JSON
+    websiteURL: string
 
     @Prop()
-    fax: string
+    telephone: string
 
     @Prop()
-    facebookID: string
+    achaubankNumber: string
+
+    @Prop()
+    viettinbankNumber: string
+
+    @Prop()
+    sacombankNumber: string
+
+    @Prop()
+    vietcombankNumber: string
+
+    @Prop()
+    agribankNumber: string
 }
 
 export const InformationSchema = SchemaFactory.createForClass(Information)

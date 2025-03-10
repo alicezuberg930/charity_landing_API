@@ -5,10 +5,11 @@ import { Model, Types } from 'mongoose'
 import { PostData } from './dto/create-post.dto'
 import { UpdatePostData } from './dto/update-post.dto'
 import { QueryPost } from './dto/query-post'
+import { FileService } from '../file/file.service'
 
 @Injectable()
 export class PostsService {
-  constructor(@InjectModel(Post.name) private postModel: Model<PostDocument>) { }
+  constructor(@InjectModel(Post.name) private postModel: Model<PostDocument>, private fileService: FileService) { }
 
   async create(postData: PostData) {
     try {
@@ -56,6 +57,7 @@ export class PostsService {
     try {
       const post = await this.postModel.findOneAndDelete({ _id: id })
       if (!post) throw new NotFoundException('Không tìm thấy bài đăng')
+      await this.fileService.delete([...post.images, post.cover])
       return post
     } catch (error) {
       throw new BadRequestException(error)

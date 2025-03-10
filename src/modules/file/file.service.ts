@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { v2 as cloudinary } from 'cloudinary'
 import { UploadApiResponse } from 'cloudinary'
 import * as fs from 'fs'
@@ -14,7 +14,9 @@ export class FileService {
         api_secret: process.env.CLOUDINARY_API_SECRET
       })
       for (let i = 0; i < files.length; i++) {
-        let response: UploadApiResponse = await cloudinary.uploader.upload(files[i].path, { folder: 'webtinhthuong', resource_type: 'image' })
+        let response: UploadApiResponse = await cloudinary.uploader.upload(files[i].path, {
+          folder: 'webtinhthuong', resource_type: 'image',
+        })
         fileUrls.push(response.secure_url)
         fs.unlink(files[i].path, (err) => {
           if (err) console.error(`Error deleting file ${files[i].path}: ${err.message}`)
@@ -41,5 +43,25 @@ export class FileService {
     //   height: 500,
     // })
     // console.log(autoCropUrl)
+  }
+
+  async delete(fileUrls: string[]) {
+    try {
+      cloudinary.config({
+        cloud_name: 'dopxhmw1q',
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+      })
+      // Extract the public ID from the URL
+      for (let i = 0; i < fileUrls.length; i++) {
+        const publicId = fileUrls[i].split('/').slice(-2).join('/').replace(/\.[^/.]+$/, '')
+        const response = await cloudinary.uploader.destroy(publicId)
+        if (response.result !== 'ok') {
+          throw new BadRequestException('Xóa file thất bại')
+        }
+      }
+    } catch (error) {
+      throw new BadRequestException(error)
+    }
   }
 }

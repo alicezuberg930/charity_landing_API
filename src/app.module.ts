@@ -13,6 +13,7 @@ import { PostsModule } from './modules/posts/posts.module';
 import { BannersModule } from './modules/banners/banners.module';
 import { FileModule } from './modules/file/file.module';
 import { InformationModule } from './modules/information/information.module';
+import { EventsModule } from './modules/events/events.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { InformationModule } from './modules/information/information.module';
     PostsModule,
     FileModule,
     BannersModule,
+    EventsModule,
     // Env config module
     ConfigModule.forRoot({ isGlobal: true }),
     // Mongodb config mondule

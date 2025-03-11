@@ -4,10 +4,11 @@ import { UpdateBannerData } from './dto/update-banner.dto'
 import { InjectModel } from '@nestjs/mongoose'
 import { Banner, BannerDocument } from './shemas/banner.schema'
 import { Model } from 'mongoose'
+import { FileService } from '../file/file.service'
 
 @Injectable()
 export class BannersService {
-  constructor(@InjectModel(Banner.name) private bannerModel: Model<BannerDocument>) { }
+  constructor(@InjectModel(Banner.name) private bannerModel: Model<BannerDocument>, private fileService: FileService) { }
 
   async create(bannerData: BannerData) {
     try {
@@ -42,6 +43,7 @@ export class BannersService {
     try {
       const banner = await this.bannerModel.findOneAndDelete({ _id: id })
       if (!banner) throw new NotFoundException('Không tìm thấy banner')
+      await this.fileService.delete([banner.image])
       return banner
     } catch (error) {
       throw new BadRequestException(error)

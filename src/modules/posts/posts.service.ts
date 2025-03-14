@@ -25,7 +25,6 @@ export class PostsService {
       const { page, category } = query
       const filter: Record<string, any> = {}
       if (category) filter.category = category
-
       let posts = await this.postModel.find(filter)
       return posts
     } catch (error) {
@@ -45,7 +44,9 @@ export class PostsService {
 
   async update(id: string, postData: UpdatePostData) {
     try {
-      const post = await this.postModel.findOneAndUpdate({ _id: id }, { ...postData }, { new: true })
+      const post = await this.postModel.findOne({ _id: id })
+      await this.fileService.delete([...post.images, post.cover])
+      await post.updateOne({ ...postData }, { new: true })
       if (!post) throw new NotFoundException('Không tìm thấy bài đăng')
       return post
     } catch (error) {

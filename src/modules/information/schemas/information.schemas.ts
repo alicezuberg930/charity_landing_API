@@ -49,6 +49,9 @@ export class Information {
 
     @Prop()
     agribankNumber: string
+
+    @Prop()
+    vpbankNumber: string
 }
 
 export const InformationSchema = SchemaFactory.createForClass(Information)

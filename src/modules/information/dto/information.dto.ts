@@ -28,21 +28,24 @@ export class InformationData {
     @IsNotEmpty({ message: "Link website không được để trống" })
     websiteURL: string
 
-    @IsNotEmpty({ message: "Số điện thoại bàn không được để trống" })
+    @IsOptional()
     telephone: string
 
-    @IsNotEmpty({ message: "STK achaubank không được để trống" })
+    @IsOptional()
     achaubankNumber: string
 
-    @IsNotEmpty({ message: "STK viettinbank không được để trống" })
+    @IsOptional()
     viettinbankNumber: string
 
-    @IsNotEmpty({ message: "STK sacombank không được để trống" })
+    @IsOptional()
     sacombankNumber: string
 
-    @IsNotEmpty({ message: "STK vietcombank không được để trống" })
+    @IsOptional()
     vietcombankNumber: string
 
-    @IsNotEmpty({ message: "STK agribank không được để trống" })
+    @IsOptional()
     agribankNumber: string
+
+    @IsOptional()
+    vpbankNumber: string
 }

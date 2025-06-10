@@ -38,7 +38,7 @@ import { EventsModule } from './modules/events/events.module';
   controllers: [AppController],
   providers: [
     AppService,
-    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    // { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_INTERCEPTOR, useClass: TransformInterceptor },
     { provide: APP_FILTER, useClass: AllExceptionsFilter }
   ],

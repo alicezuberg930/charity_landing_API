@@ -9,9 +9,9 @@ export class IpWhitelistMiddleware implements NestMiddleware {
         const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.ip || req.socket.remoteAddress;
         console.log("Request IP: " + (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim())
         // console.log("Request socket IP: " + req.socket.remoteAddress)
-        if (!this.allowedIps.includes(clientIp)) {
-            throw new UnauthorizedException('IP not allowed');
-        }
+        // if (!this.allowedIps.includes(clientIp)) {
+        //     throw new UnauthorizedException('IP not allowed');
+        // }
         next();
     }
 }

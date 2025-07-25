@@ -2,11 +2,11 @@ import { Body, Controller, FileTypeValidator, Get, HttpStatus, MaxFileSizeValida
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/create-auth.dto';
 import { LocalAuthGuard } from './passport/local-auth.guard';
-import { Public, ResponseMessage } from 'src/public.decorator';
+import { Public, ResponseMessage } from 'src/common/decorators/public.decorator';
 import { MailerService } from '@nestjs-modules/mailer';
 import { VerifyDto } from './dto/verify-auth.dto';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { FileSizeValidationPipe } from 'src/common/file.validator';
+import { FileSizeValidationPipe } from 'src/common/helpers/exception/file.validator';
 
 @Controller('auth')
 export class AuthController {

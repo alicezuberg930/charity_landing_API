@@ -2,7 +2,7 @@
 import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { IS_PUBLIC_KEY } from 'src/public.decorator';
+import { IS_PUBLIC_KEY } from 'src/common/decorators/public.decorator';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -19,7 +19,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         return super.canActivate(context);
     }
 
-    handleRequest(err, user, info) {
+    handleRequest(err: any, user: any, info: any) {
         // You can throw an exception based on either "info" or "err" arguments
         if (err || !user) throw err || new UnauthorizedException("Access token không hợp lệ");
         return user

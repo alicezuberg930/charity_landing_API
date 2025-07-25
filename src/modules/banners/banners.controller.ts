@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BannersService } from './banners.service'
 import { BannerData } from './dto/create-banner.dto'
 import { UpdateBannerData } from './dto/update-banner.dto'
-import { ResponseMessage } from 'src/public.decorator'
+import { ResponseMessage } from 'src/common/decorators/public.decorator'
 
 @Controller('banners')
 export class BannersController {

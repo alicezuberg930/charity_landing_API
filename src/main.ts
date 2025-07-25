@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // Enable trust proxy to handle X-Forwarded-For headers
+  app.getHttpAdapter().getInstance().enable('trust proxy');
   // set prefix for every endpoint to api/v1
   app.setGlobalPrefix("api/v1", { exclude: [""] })
   // whitelist configured fields and throw error for non whitelisted fields

@@ -12,6 +12,10 @@ export class BannersService {
 
   async create(bannerData: BannerData) {
     try {
+      const existingBanner = await this.bannerModel.findOne({ order: bannerData.order })
+      if (existingBanner) {
+        throw new BadRequestException('Banner với thứ tự này đã tồn tại')
+      }
       return await this.bannerModel.create({ ...bannerData })
     } catch (error) {
       throw new BadRequestException(error)
@@ -20,7 +24,7 @@ export class BannersService {
 
   async findAll() {
     try {
-      const banners = await this.bannerModel.find()
+      const banners = await this.bannerModel.find().sort({ order: 1 })
       return banners
     } catch (error) {
       throw new BadRequestException(error)
